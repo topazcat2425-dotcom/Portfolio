@@ -114,8 +114,7 @@ Below is further rationale/explanation for the rubric items above:
 > to create a new design. In you do end up picking one at random, you should
 > disclose that here as well.
 
-<!-- TODO: briefly argue your choice of design or design something
-new; then delete this comment -->
+I chose my better boolean data structure storage idea, not only because "coolbool" is a dumb name and I like it, but also because I think it'd be interesting logically to think out the full idea. I do kinda want to go back and change my second idea to a matrix so I can do matricies because I'm learning linear algebra rn and I HATE it and I think it'd help me understand the class better, but... CoolBool is already there so...
 
 > Once you've argued your choice of design, make a branch in your new repo called
 > something like `proof-of-concept`. There are many ways to do this, but my
@@ -172,7 +171,7 @@ the following form: YYYY.0M.0D.
 
 ### Added
 
-- Designed a proof of concept for <!-- insert name of component here --> component
+- Designed a proof of concept for CoolBool component
 
 ### Updated
 
