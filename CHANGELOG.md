@@ -77,14 +77,22 @@ the following form: YYYY.0M.0D.
 
 ### Added
 
-- Designed a proof of concept for THE PROOF OF CONCEPT! (OOPS!) component
+- Designed a proof of concept for CoolBool component
 - Started designing interfaces for funsies.
 
 ### Updated
 
 - Changed design to include the proof of concept file that I forgot to make and make public. Oopsies! Sorry Jeremy... and peer reviewers.
 
-```
+## [2025.10.22]
+
+### Added
+
+- Designed kernel and enhanced interfaces for CoolBool component
+
+### Updated
+
+- Changed design to include all the kernel methods, and some enhanced methods.
 
 Here `2025.10.22` would be the date of your submission, such as 2024.04.21.
 
