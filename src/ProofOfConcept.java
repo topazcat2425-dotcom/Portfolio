@@ -97,7 +97,6 @@ public final class ProofOfConcept {
 
         arr += setTrue(5);
         arr += setTrue(2);
-
         arr += setTrue(1);
 
         System.out.println(arr);
