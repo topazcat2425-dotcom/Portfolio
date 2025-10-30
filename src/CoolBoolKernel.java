@@ -3,26 +3,36 @@
  * @author Trevor Baroni
  *
  */
-public interface CoolBoolKernel
-        extends Standard<CoolBoolSecondary>, Iterable<Byte> {
+public interface CoolBoolKernel extends Standard<CoolBool>, Iterable<Byte> {
 
     /**
+     * Sets the position to true.
+     *
      * @param pos
      */
     void setTrue(boolean pos);
 
     /**
-     * @param pos
+     * Sets the position to false.
      *
-     * @return removed element
+     * @param pos
      */
-    boolean setFalse(int pos);
+    void setFalse(int pos);
 
     /**
+     * Reports the value the boolean at pos.
+     *
      * @param pos
      *
      * @return reported element
      */
     boolean report(int pos);
+
+    /**
+     * Reports the length of this.
+     *
+     * @return length of array
+     */
+    int length();
 
 }

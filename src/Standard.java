@@ -1,6 +1,7 @@
 /**
  *
  * @param T
+ *            this does stuff.
  *
  * @author Trevor Baroni
  *
@@ -11,17 +12,17 @@ public interface Standard<T> {
      * @param source
      *
      * @return the new CoolBool
+     * @update clears source
      */
-    CoolBool copyFrom(CoolBool source);
+    CoolBool transferFrom(CoolBool source);
 
     /**
-     * @return this as a string
+     * @return new instance of this
      */
-    @Override
-    String toString();
+    CoolBool newInstance();
 
     /**
-     * @return this as an array of booleans (inefficient)
+     * @clears this
      */
-    boolean[] toArray();
+    void clear();
 }
