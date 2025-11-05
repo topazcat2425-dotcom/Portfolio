@@ -1,16 +1,18 @@
 /**
  *
  * @author Trevor Baroni
+ * @param <CoolBool>
  *
  */
-public interface CoolBoolKernel extends Standard<CoolBool>, Iterable<Byte> {
+public interface CoolBoolKernel<CoolBool>
+        extends Standard<CoolBool>, Iterable<Byte> {
 
     /**
      * Sets the position to true.
      *
      * @param pos
      */
-    void setTrue(boolean pos);
+    void setTrue(int pos);
 
     /**
      * Sets the position to false.

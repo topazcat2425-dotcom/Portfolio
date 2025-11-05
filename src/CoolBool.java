@@ -33,4 +33,11 @@ public interface CoolBool extends CoolBoolKernel {
      * Turns every true into false and every false into true... for some reason.
      */
     void boolflip();
+
+    /**
+     * Returns the amount of true values.
+     *
+     * @return number of true values.
+     */
+    int numTrue();
 }
