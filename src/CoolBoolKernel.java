@@ -1,5 +1,6 @@
 /**
  *
+ *
  * @author Trevor Baroni
  * @param <CoolBool>
  *

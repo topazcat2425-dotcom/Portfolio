@@ -1,6 +1,6 @@
 /**
  *
- * @param T
+ * @param <T>
  *            this does stuff.
  *
  * @author Trevor Baroni
@@ -14,12 +14,12 @@ public interface Standard<T> {
      * @return the new CoolBool
      * @update clears source
      */
-    CoolBool transferFrom(CoolBool source);
+    T transferFrom(T source);
 
     /**
      * @return new instance of this
      */
-    CoolBool newInstance();
+    T newInstance();
 
     /**
      * @clears this
