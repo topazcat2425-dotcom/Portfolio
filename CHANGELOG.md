@@ -73,6 +73,29 @@ the following form: YYYY.0M.0D.
 - Created initial drafts of the six portfolio assessments
 - Added READMEs to key folders like `test` and `lib` to explain their purpose
 
+## [2025.10.22]
+
+### Added
+
+- Designed a proof of concept for CoolBool component
+- Started designing interfaces for funsies.
+
+### Updated
+
+- Changed design to include the proof of concept file that I forgot to make and make public. Oopsies! Sorry Jeremy... and peer reviewers.
+
+## [2025.10.22]
+
+### Added
+
+- Designed kernel and enhanced interfaces for CoolBool component
+
+### Updated
+
+- Changed design to include all the kernel methods, and some enhanced methods.
+
+Here `2025.10.22` would be the date of your submission, such as 2024.04.21.
+
 [unreleased]: https://github.com/jrg94/portfolio-project/compare/v2024.08.07...HEAD
 [2024.08.07]: https://github.com/jrg94/portfolio-project/compare/v2024.01.07...v2024.08.07
 [2024.01.07]: https://github.com/jrg94/portfolio-project/releases/tag/v2024.01.07

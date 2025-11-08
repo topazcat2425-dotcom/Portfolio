@@ -1,6 +1,7 @@
 /**
  *
- * @param <T> the object we're making standard for
+ * @param T
+ *            this does stuff.
  *
  * @author Trevor Baroni
  *
@@ -8,20 +9,20 @@
 public interface Standard<T> {
 
     /**
-     *  @return a new instance of this
+     * @param source
+     *
+     * @return the new CoolBool
+     * @update clears source
      */
-    CoolBoolSecondary newInstance();
+    CoolBool transferFrom(CoolBool source);
+
+    /**
+     * @return new instance of this
+     */
+    CoolBool newInstance();
 
     /**
      * @clears this
      */
     void clear();
-
-    /**
-     * @param source
-     * @clears this
-     *
-     * @return the new CoolBool
-     */
-    CoolBoolSecondary transferFrom(CoolBoolSecondary source);
 }
