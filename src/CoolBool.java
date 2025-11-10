@@ -6,26 +6,27 @@
 public interface CoolBool extends CoolBoolKernel {
 
     /**
-     * Copies from the source to this.
+     * Copies {@code source} to {@code this}.
      *
      * @param source
-     *
-     * @return the new CoolBool
+     *            {@code CoolBool} to copy from
+     * @replaces this
+     * @ensures this = source
      */
-    CoolBool copyFrom(CoolBool source);
+    void copyFrom(CoolBool source);
 
     /**
-     * Returns this as a string.
+     * Returns {@code this} as a string.
      *
-     * @return this as a string
+     * @return {@code this} as a string
      */
     @Override
     String toString();
 
     /**
-     * Turns this into an array of booleans.
+     * Turns {@code this} into an array of booleans.
      *
-     * @return this as an array of booleans (inefficient)
+     * @return {@code this} as an array of booleans (inefficient)
      */
     boolean[] toArray();
 
