@@ -8,6 +8,13 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+## [2025.11.14]
+
+### Updated
+
+- CoolBoolSecondary, added overriding implementation for equals
+
+
 ## [2025.11.08]
 
 ### Added

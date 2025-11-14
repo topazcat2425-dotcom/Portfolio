@@ -103,4 +103,25 @@ public abstract class CoolBoolSecondary implements CoolBool {
         }
         return count;
     }
+
+    @Override
+    public boolean equals(Object x) {
+        assert x != null : "get that outta here!";
+
+        boolean samies = false;
+
+        if (x == this) {
+            samies = true;
+        }
+
+        if (x instanceof CoolBool) {
+            boolean[] obj = ((CoolBoolSecondary) x).toArray();
+            boolean[] thi = this.toArray();
+            if (thi.equals(obj)) {
+                samies = true;
+            }
+        }
+
+        return samies;
+    }
 }
