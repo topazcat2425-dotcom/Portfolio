@@ -124,4 +124,20 @@ public abstract class CoolBoolSecondary implements CoolBool {
 
         return samies;
     }
+
+    @Override
+    public int hashCode() {
+
+        int hash = 0;
+
+        boolean[] arr = this.toArray();
+
+        for (boolean i : arr) {
+            if (i) {
+                hash++;
+            }
+        }
+
+        return hash;
+    }
 }
