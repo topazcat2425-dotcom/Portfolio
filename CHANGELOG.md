@@ -8,6 +8,12 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+## [2025.11.21]
+
+### Added
+
+- Added kernel implementation as CoolBool1, still missing iterator and transfer from
+
 ## [2025.11.15]
 
 ### Updated
