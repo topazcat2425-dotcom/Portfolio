@@ -10,9 +10,19 @@ the following form: YYYY.0M.0D.
 
 ## [2025.11.21]
 
+### Updated
+
+- The kernel methods are leaner, and they work better... as in they work now.
+
 ### Added
 
-- Added kernel implementation as CoolBool1, still missing iterator and transfer from
+- Added the iterator and transferFrom methods in the kernel implementaton
+
+## [2025.11.21]
+
+### Added
+
+- Added kernel implementation as CoolBool1, still missing iterator and transferFrom
 
 ## [2025.11.15]
 

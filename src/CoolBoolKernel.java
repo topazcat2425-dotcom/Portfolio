@@ -5,8 +5,7 @@
  * @param <CoolBool>
  *
  */
-public interface CoolBoolKernel<CoolBool>
-        extends Standard<CoolBool>, Iterable<Byte> {
+public interface CoolBoolKernel extends Standard<CoolBool>, Iterable<Boolean> {
 
     /**
      * Sets the position to true.

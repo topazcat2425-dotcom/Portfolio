@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 /**
  * Put a short phrase describing the program here.
@@ -71,11 +72,42 @@ public final class Test {
      */
     public static void main(String[] args) {
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(Math.pow(2, i) + " | " + i);
+        CoolBool c = new CoolBool1(10);
+
+        c.setTrue(3);
+        c.setTrue(0);
+        c.setTrue(6);
+
+        c.setTrue(9);
+        c.setTrue(7);
+
+        System.out.println(Arrays.toString(c.toArray()));
+
+        if (c.report(0)) {
+            System.out.println("GENIUS!");
         }
 
-        System.out.println(19 / 8);
+        c.setFalse(3);
+        c.setFalse(7);
+        c.setFalse(0);
 
+        System.out.println(Arrays.toString(c.toArray()));
+
+        if (c.report(9)) {
+            System.out.println("you are the smartest man alive");
+        }
+
+        c.boolflip();
+
+        System.out.println(Arrays.toString(c.toArray()));
+
+        for (boolean i : c) {
+            System.out.println(i);
+        }
+
+        CoolBool d = c.newInstance();
+        d.transferFrom(c);
+        System.out.println(Arrays.toString(c.toArray()));
+        System.out.println(Arrays.toString(d.toArray()));
     }
 }

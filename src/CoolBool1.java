@@ -5,10 +5,9 @@ import java.util.NoSuchElementException;
  *
  *
  * @author Trevor Baroni
- * @param <CoolBool>
  *
  */
-public abstract class CoolBool1 implements CoolBoolKernel {
+public class CoolBool1 extends CoolBoolSecondary {
 
     /*
      * the array.
@@ -92,6 +91,16 @@ public abstract class CoolBool1 implements CoolBoolKernel {
     }
 
     /**
+     * Reads the "array" and reports what the first 6 values are.
+     */
+    private void debugStick() {
+        for (byte i : this.arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    /**
      * Creator of initial representation.
      *
      * @param size
@@ -105,7 +114,7 @@ public abstract class CoolBool1 implements CoolBoolKernel {
      * </pre>
      */
     private void createNewRep(int size) {
-        this.arr = new byte[(size / 8) + 1];
+        this.arr = new byte[(size / 7) + 1];
         this.length = size;
 
         for (int i = 0; i < this.arr.length; i++) {
@@ -114,8 +123,15 @@ public abstract class CoolBool1 implements CoolBoolKernel {
     }
 
     /*
-     * Constructors -----------------------------------------------------------
+     * Constructor -----------------------------------------------------------
      */
+
+    /**
+     * no argss constructy
+     */
+    public CoolBool1() {
+        this.createNewRep(0);
+    }
 
     /**
      * Constructor from size.
@@ -127,6 +143,16 @@ public abstract class CoolBool1 implements CoolBoolKernel {
         this.createNewRep(size);
     }
 
+    /**
+     * Constructor from size.
+     *
+     * @param size
+     *            total size of the array
+     */
+    public CoolBool1(String size) {
+        this.createNewRep(Integer.parseInt(size));
+    }
+
     /*
      * standard methods:
      */
@@ -136,15 +162,24 @@ public abstract class CoolBool1 implements CoolBoolKernel {
      *
      * @update clears source
      */
+    @Override
     public void transferFrom(CoolBool source) {
-        // TBD!!! I'll work on it later
+        this.createNewRep(source.length());
+        int j = 0;
+        for (boolean i : source) {
+            if (i) {
+                this.setTrue(j);
+            }
+            j++;
+        }
+        source.clear();
     }
 
     /**
      * @return new instance of this
      */
     @Override
-    public final CoolBool1 newInstance() {
+    public final CoolBool newInstance() {
         try {
             return this.getClass().getConstructor().newInstance();
         } catch (ReflectiveOperationException e) {
@@ -159,6 +194,7 @@ public abstract class CoolBool1 implements CoolBoolKernel {
     @Override
     public void clear() {
         this.arr = new byte[0];
+        this.length = 0;
     }
 
     /*
@@ -172,22 +208,12 @@ public abstract class CoolBool1 implements CoolBoolKernel {
      */
     @Override
     public void setTrue(int pos) {
-        byte removed = 0;
-        byte section = this.arr[(pos / 8) - 1];
+        if (!this.report(pos)) {
+            byte section = this.arr[(pos / 7)];
+            int posProper = (int) pos % 7;
 
-        for (byte i = 7; i >= pos; i--) {
-            byte thisOne = (byte) Math.pow(2, i);
-            if (section / thisOne == 1) {
-                section -= thisOne;
-                removed += thisOne;
-            } else if (i == pos) {
-                section += thisOne;
-            }
+            this.arr[(pos / 7)] = (byte) (section + Math.pow(2, posProper));
         }
-
-        section += removed;
-
-        this.arr[(pos / 8) - 1] = section;
     }
 
     /**
@@ -197,21 +223,12 @@ public abstract class CoolBool1 implements CoolBoolKernel {
      */
     @Override
     public void setFalse(int pos) {
-        byte removed = 0;
-        byte section = this.arr[(pos / 8) - 1];
+        if (this.report(pos)) {
+            byte section = this.arr[(pos / 7)];
+            int posProper = (int) pos % 7;
 
-        for (byte i = 7; i >= pos; i--) {
-            byte thisOne = (byte) Math.pow(2, i);
-            if (section / thisOne == 1) {
-                section -= thisOne;
-                if (i != pos) {
-                    removed += thisOne;
-                }
-            }
+            this.arr[(pos / 7)] = (byte) (section - Math.pow(2, posProper));
         }
-
-        section += removed;
-        this.arr[(pos / 8) - 1] = section;
     }
 
     /**
@@ -223,25 +240,24 @@ public abstract class CoolBool1 implements CoolBoolKernel {
      */
     @Override
     public boolean report(int pos) {
-        boolean partRead = false;
-        byte removed = 0;
-        byte section = this.arr[(pos / 8) - 1];
 
-        for (byte i = 7; i >= pos; i--) {
+        boolean tbd = false;
+
+        byte section = this.arr[(pos / 7)];
+        int posProper = (int) pos % 7;
+
+        for (byte i = 6; i >= posProper; i--) {
             byte thisOne = (byte) Math.pow(2, i);
+
             if (section / thisOne == 1) {
                 section -= thisOne;
-                removed += thisOne;
-                if (i == pos) {
-                    partRead = true;
+                if (posProper == i) {
+                    tbd = true;
                 }
             }
         }
 
-        section += removed;
-        this.arr[(pos / 8) - 1] = section;
-
-        return partRead;
+        return tbd;
     }
 
     /**
@@ -254,47 +270,39 @@ public abstract class CoolBool1 implements CoolBoolKernel {
         return this.length;
     }
 
+    /*
+     * I'll also work on this later! Give me a few hours... or days
+     */
+
     @Override
-    public final Iterator<Byte> iterator() {
+    public final Iterator<Boolean> iterator() {
         return new CoolBool1Iterator();
     }
 
     /**
      * Implementation of {@code Iterator} interface for {@code Map4}.
      */
-    private final class CoolBool1Iterator implements Iterator<Byte> {
+    private final class CoolBool1Iterator implements Iterator<Boolean> {
 
         /**
          * Number of elements seen already (i.e., |~this.seen|).
          */
-        private int numberSeen;
-
-        /**
-         * Bucket from which current bucket iterator comes.
-         */
-        private int currentBucket;
-
-        /**
-         * Bucket iterator from which next element will come.
-         */
-        private Iterator<Pair<K, V>> bucketIterator;
+        private int currentPos;
 
         /**
          * No-argument constructor.
          */
-        Map4Iterator() {
-            this.numberSeen = 0;
-            this.currentBucket = 0;
-            this.bucketIterator = Map4.this.hashTable[0].iterator();
+        CoolBool1Iterator() {
+            this.currentPos = 0;
         }
 
         @Override
         public boolean hasNext() {
-            return this.numberSeen < Map4.this.size;
+            return this.currentPos < CoolBool1.this.length();
         }
 
         @Override
-        public Pair<K, V> next() {
+        public Boolean next() {
             assert this.hasNext() : "Violation of: ~this.unseen /= <>";
             if (!this.hasNext()) {
                 /*
@@ -304,13 +312,10 @@ public abstract class CoolBool1 implements CoolBoolKernel {
                  */
                 throw new NoSuchElementException();
             }
-            this.numberSeen++;
-            while (!this.bucketIterator.hasNext()) {
-                this.currentBucket++;
-                this.bucketIterator = Map4.this.hashTable[this.currentBucket]
-                        .iterator();
-            }
-            return this.bucketIterator.next();
+            boolean tbd = CoolBool1.this.report(this.currentPos);
+            this.currentPos++;
+
+            return tbd;
         }
 
         @Override
