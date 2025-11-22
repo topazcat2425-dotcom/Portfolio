@@ -8,6 +8,50 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+## [2025.11.15]
+
+### Updated
+
+- CoolBoolSecondary, added overriding implementation for hashCode
+
+## [2025.11.14]
+
+### Updated
+
+- CoolBoolSecondary, added overriding implementation for equals
+
+## [2025.11.08]
+
+### Added
+
+- Added implementations for secondary methods in CoolBoolSecondary.
+
+### Updated
+
+- Changed CoolBool to have a few extra secondary methods to be implemented.
+- Changed CoolBool's old method contracts to look more professional
+
+## [2025.10.23]
+
+### Added
+
+- Designed kernel and enhanced interfaces for CoolBool component
+
+### Updated
+
+- Changed design to include all the kernel methods, and some enhanced methods.
+
+## [2025.10.22]
+
+### Added
+
+- Designed a proof of concept for CoolBool component
+- Started designing interfaces for funsies.
+
+### Updated
+
+- Changed design to include the proof of concept file that I forgot to make and make public. Oopsies! Sorry Jeremy... and peer reviewers.
+
 ## [2024.12.30]
 
 - Added table-based rubrics to all 6 parts of the project
@@ -72,27 +116,6 @@ the following form: YYYY.0M.0D.
 - Created a README at the root to explain how to use the template repo
 - Created initial drafts of the six portfolio assessments
 - Added READMEs to key folders like `test` and `lib` to explain their purpose
-
-## [2025.10.22]
-
-### Added
-
-- Designed a proof of concept for CoolBool component
-- Started designing interfaces for funsies.
-
-### Updated
-
-- Changed design to include the proof of concept file that I forgot to make and make public. Oopsies! Sorry Jeremy... and peer reviewers.
-
-## [2025.10.22]
-
-### Added
-
-- Designed kernel and enhanced interfaces for CoolBool component
-
-### Updated
-
-- Changed design to include all the kernel methods, and some enhanced methods.
 
 Here `2025.10.22` would be the date of your submission, such as 2024.04.21.
 

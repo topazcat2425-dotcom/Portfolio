@@ -1,5 +1,7 @@
 /**
  *
+ * {@code CoolBoolKernel} enhanced with secondary methods.
+ *
  * @author Trevor Baroni
  *
  */
@@ -10,40 +12,42 @@ public abstract class CoolBoolSecondary implements CoolBool {
      *
      * @param source
      *
-     * @return the new CoolBool
+     * @updates this
      */
     @Override
-    public CoolBool copyFrom(CoolBool source) {
+    public void copyFrom(CoolBool source) {
 
-        CoolBool newThing = source.newInstance();
+        // clears this to make room to copy
+        this.clear();
 
-        for (int i = 0; i < this.length(); i++) {
+        // iterates through the cool bool...ean
+        for (int i = 0; i < source.length(); i++) {
+            // copies everything from source to this
             if (source.report(i)) {
-                newThing.setTrue(i);
+                this.setTrue(i);
             } else {
-                newThing.setFalse(i);
+                this.setFalse(i);
             }
         }
-
-        return newThing;
-
     }
 
     /**
-     * Returns this as a string.
+     * Returns {@code this} as a string.
      *
-     * @return this as a string
+     * @return {@code this} as a string
      */
     @Override
     public String toString() {
 
         String result = "";
 
+        // iterates through this
         for (int i = 0; i < this.length(); i++) {
+            // if true, add a 1 to the string, else add 0
             if (this.report(i)) {
                 result = result.concat("1");
             } else {
-                result = result.concat("1");
+                result = result.concat("0");
             }
         }
 
@@ -52,14 +56,15 @@ public abstract class CoolBoolSecondary implements CoolBool {
     }
 
     /**
-     * Turns this into an array of booleans.
+     * Turns {@code this} into an array of booleans.
      *
-     * @return this as an array of booleans (inefficient)
+     * @return {@code this} as an array of booleans (inefficient)
      */
     @Override
     public boolean[] toArray() {
         boolean[] arr = new boolean[this.length()];
 
+        // iterates through and adds each true/false to the array
         for (int i = 0; i < this.length(); i++) {
             arr[i] = this.report(i);
         }
@@ -97,5 +102,42 @@ public abstract class CoolBoolSecondary implements CoolBool {
             }
         }
         return count;
+    }
+
+    @Override
+    public boolean equals(Object x) {
+        assert x != null : "get that outta here!";
+
+        boolean samies = false;
+
+        if (x == this) {
+            samies = true;
+        }
+
+        if (x instanceof CoolBool) {
+            boolean[] obj = ((CoolBoolSecondary) x).toArray();
+            boolean[] thi = this.toArray();
+            if (thi.equals(obj)) {
+                samies = true;
+            }
+        }
+
+        return samies;
+    }
+
+    @Override
+    public int hashCode() {
+
+        int hash = 0;
+
+        boolean[] arr = this.toArray();
+
+        for (boolean i : arr) {
+            if (i) {
+                hash++;
+            }
+        }
+
+        return hash;
     }
 }
