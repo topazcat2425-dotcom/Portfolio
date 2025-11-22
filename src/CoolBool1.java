@@ -46,13 +46,6 @@ public class CoolBool1 extends CoolBoolSecondary {
      */
 
     /**
-     * no argss constructy
-     */
-    public CoolBool1() {
-        this.createNewRep(0);
-    }
-
-    /**
      * Constructor from size.
      *
      * @param size
