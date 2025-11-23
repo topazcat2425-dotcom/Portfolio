@@ -72,11 +72,15 @@ public final class Test {
      */
     public static void main(String[] args) {
 
-        CoolBool c = new CoolBool1(10);
+        CoolBool c = new CoolBool1(32);
 
         c.setTrue(3);
         c.setTrue(0);
         c.setTrue(6);
+
+        c.setTrue(31);
+
+        c.setTrue(30);
 
         c.setTrue(9);
         c.setTrue(7);

@@ -8,7 +8,17 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
-## [2025.11.21]
+## [2025.11.23]
+
+### Updated
+
+- Changelog (oopsies!) and CoolBool1 to work work I tried it, also added new private constant variable.
+
+### Added
+
+- Added CoolBool2, which implements on integers instead of bytes.
+
+## [2025.11.22]
 
 ### Updated
 

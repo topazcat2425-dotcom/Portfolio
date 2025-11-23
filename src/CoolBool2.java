@@ -2,19 +2,19 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * It's a better way to store an array of booleans. Implemented with bytes.
+ * It's a better way to store an array of booleans. Implemented with integers.
  *
  * @convention the size is NOT dynamic, don't @ me.
  *
  * @author Trevor Baroni
  *
  */
-public class CoolBool1 extends CoolBoolSecondary {
+public class CoolBool2 extends CoolBoolSecondary {
 
     /*
      * the array.
      */
-    private byte[] arr = new byte[0];
+    private int[] arr = new int[0];
 
     /*
      * the length.
@@ -24,7 +24,7 @@ public class CoolBool1 extends CoolBoolSecondary {
     /*
      * the amount of bits in the chosen storage container.
      */
-    private final byte BITS = 7;
+    private final int BITS = 31;
 
     /**
      * Creator of initial representation.
@@ -40,7 +40,7 @@ public class CoolBool1 extends CoolBoolSecondary {
      * </pre>
      */
     private void createNewRep(int size) {
-        this.arr = new byte[(size / this.BITS) + 1];
+        this.arr = new int[(size / this.BITS) + 1];
         this.length = size;
 
         for (int i = 0; i < this.arr.length; i++) {
@@ -56,7 +56,7 @@ public class CoolBool1 extends CoolBoolSecondary {
      * no args constructor.
      *
      */
-    public CoolBool1() {
+    public CoolBool2() {
         this.createNewRep(0);
     }
 
@@ -66,7 +66,7 @@ public class CoolBool1 extends CoolBoolSecondary {
      * @param size
      *            total size of the array
      */
-    public CoolBool1(int size) {
+    public CoolBool2(int size) {
         this.createNewRep(size);
     }
 
@@ -76,7 +76,7 @@ public class CoolBool1 extends CoolBoolSecondary {
      * @param size
      *            total size of the array
      */
-    public CoolBool1(String size) {
+    public CoolBool2(String size) {
         this.createNewRep(Integer.parseInt(size));
     }
 
@@ -120,7 +120,7 @@ public class CoolBool1 extends CoolBoolSecondary {
      */
     @Override
     public void clear() {
-        this.arr = new byte[0];
+        this.arr = new int[0];
         this.length = 0;
     }
 
@@ -136,10 +136,10 @@ public class CoolBool1 extends CoolBoolSecondary {
     @Override
     public void setTrue(int pos) {
         if (!this.report(pos)) {
-            byte section = this.arr[(pos / this.BITS)];
+            int section = this.arr[(pos / this.BITS)];
             int posProper = (int) pos % this.BITS;
 
-            this.arr[(pos / this.BITS)] = (byte) (section
+            this.arr[(pos / this.BITS)] = (int) (section
                     + Math.pow(2, posProper));
         }
     }
@@ -152,10 +152,10 @@ public class CoolBool1 extends CoolBoolSecondary {
     @Override
     public void setFalse(int pos) {
         if (this.report(pos)) {
-            byte section = this.arr[(pos / this.BITS)];
+            int section = this.arr[(pos / this.BITS)];
             int posProper = (int) pos % this.BITS;
 
-            this.arr[(pos / this.BITS)] = (byte) (section
+            this.arr[(pos / this.BITS)] = (int) (section
                     - Math.pow(2, posProper));
         }
     }
@@ -172,11 +172,11 @@ public class CoolBool1 extends CoolBoolSecondary {
 
         boolean tbd = false;
 
-        byte section = this.arr[(pos / this.BITS)];
+        int section = this.arr[(pos / this.BITS)];
         int posProper = (int) pos % this.BITS;
 
-        for (byte i = (byte) (this.BITS - 1); i >= posProper; i--) {
-            byte thisOne = (byte) Math.pow(2, i);
+        for (int i = (this.BITS - 1); i >= posProper; i--) {
+            int thisOne = (int) Math.pow(2, i);
 
             if (section / thisOne == 1) {
                 section -= thisOne;
@@ -227,7 +227,7 @@ public class CoolBool1 extends CoolBoolSecondary {
 
         @Override
         public boolean hasNext() {
-            return this.currentPos < CoolBool1.this.length();
+            return this.currentPos < CoolBool2.this.length();
         }
 
         @Override
@@ -241,7 +241,7 @@ public class CoolBool1 extends CoolBoolSecondary {
                  */
                 throw new NoSuchElementException();
             }
-            boolean tbd = CoolBool1.this.report(this.currentPos);
+            boolean tbd = CoolBool2.this.report(this.currentPos);
             this.currentPos++;
 
             return tbd;
