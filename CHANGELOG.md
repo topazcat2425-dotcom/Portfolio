@@ -8,6 +8,12 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+## [2025.11.27]
+
+### Added
+
+- Added CoolBool3, which uses all 8 bits in the byte, instead of just 7.
+
 ## [2025.11.23]
 
 ### Updated

@@ -72,46 +72,19 @@ public final class Test {
      */
     public static void main(String[] args) {
 
-        CoolBool c = new CoolBool1(32);
+        CoolBool c = new CoolBool3(10);
 
-        c.setTrue(3);
         c.setTrue(0);
-        c.setTrue(6);
-
-        c.setTrue(31);
-
-        c.setTrue(30);
-
-        c.setTrue(9);
+        c.setTrue(3);
         c.setTrue(7);
+
+        c.setTrue(8);
 
         System.out.println(Arrays.toString(c.toArray()));
 
-        if (c.report(0)) {
-            System.out.println("GENIUS!");
-        }
-
-        c.setFalse(3);
-        c.setFalse(7);
         c.setFalse(0);
 
         System.out.println(Arrays.toString(c.toArray()));
 
-        if (c.report(9)) {
-            System.out.println("you are the smartest man alive");
-        }
-
-        c.boolflip();
-
-        System.out.println(Arrays.toString(c.toArray()));
-
-        for (boolean i : c) {
-            System.out.println(i);
-        }
-
-        CoolBool d = c.newInstance();
-        d.transferFrom(c);
-        System.out.println(Arrays.toString(c.toArray()));
-        System.out.println(Arrays.toString(d.toArray()));
     }
 }
