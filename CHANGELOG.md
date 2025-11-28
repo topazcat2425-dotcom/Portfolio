@@ -8,6 +8,38 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+## [2025.11.27]
+
+### Added
+
+- Added CoolBool3, which uses all 8 bits in the byte, instead of just 7.
+
+## [2025.11.23]
+
+### Updated
+
+- Changelog (oopsies!) and CoolBool1 to work work I tried it, also added new private constant variable.
+
+### Added
+
+- Added CoolBool2, which implements on integers instead of bytes.
+
+## [2025.11.22]
+
+### Updated
+
+- The kernel methods are leaner, and they work better... as in they work now.
+
+### Added
+
+- Added the iterator and transferFrom methods in the kernel implementaton
+
+## [2025.11.21]
+
+### Added
+
+- Added kernel implementation as CoolBool1, still missing iterator and transferFrom
+
 ## [2025.11.15]
 
 ### Updated
