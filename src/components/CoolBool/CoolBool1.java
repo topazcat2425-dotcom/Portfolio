@@ -1,27 +1,31 @@
+package components.CoolBool;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
  * It's a better way to store an array of booleans. Implemented with bytes.
  *
- * @convention the size is NOT dynamic, don't @ me.
+ * @convention the size is NOT dynamic, don't @ me. Also by default all entries
+ *             are false.
+ * @correspondence this is an array of bytes, but it only uses 7 of the 8 bits.
  *
  * @author Trevor Baroni
  *
  */
 public class CoolBool1 extends CoolBoolSecondary {
 
-    /*
+    /**
      * the array.
      */
     private byte[] arr = new byte[0];
 
-    /*
+    /**
      * the length.
      */
     private int length = 0;
 
-    /*
+    /**
      * the amount of bits in the chosen storage container.
      */
     private final byte BITS = 7;
@@ -30,19 +34,13 @@ public class CoolBool1 extends CoolBoolSecondary {
      * Creator of initial representation.
      *
      * @param size
-     *            total preorder for sorting
-     * @requires IS_TOTAL_PREORDER([relation computed by order.compare method]
-     * @ensures <pre>
-     * $this.insertionMode = true  and
-     * $this.machineOrder = order  and
-     * $this.entries = <>  and
-     * $this.heapSize = 0
-     * </pre>
+     *            size of the array you're making
      */
     private void createNewRep(int size) {
         this.arr = new byte[(size / this.BITS) + 1];
         this.length = size;
 
+        // fills the array with bytes
         for (int i = 0; i < this.arr.length; i++) {
             this.arr[i] = 0;
         }
@@ -61,7 +59,7 @@ public class CoolBool1 extends CoolBoolSecondary {
     }
 
     /**
-     * Constructor from size.
+     * Constructor from size (int).
      *
      * @param size
      *            total size of the array
@@ -71,12 +69,14 @@ public class CoolBool1 extends CoolBoolSecondary {
     }
 
     /**
-     * Constructor from size.
+     * Constructor from size (String).
      *
      * @param size
      *            total size of the array
+     * @requires size is not null
      */
     public CoolBool1(String size) {
+        assert size != null : "Violates of requires size is not null";
         this.createNewRep(Integer.parseInt(size));
     }
 
@@ -87,12 +87,17 @@ public class CoolBool1 extends CoolBoolSecondary {
     /**
      * @param source
      *
+     * @requires source is not null
      * @update clears source
      */
     @Override
     public void transferFrom(CoolBool source) {
+        assert source != null : "Violation of requires source is not null";
+
         this.createNewRep(source.length());
         int j = 0;
+
+        // sets each boolean in this to true;
         for (boolean i : source) {
             if (i) {
                 this.setTrue(j);
@@ -131,14 +136,21 @@ public class CoolBool1 extends CoolBoolSecondary {
     /**
      * Sets the position to true.
      *
+     * @requires pos < |this|
      * @param pos
      */
     @Override
     public void setTrue(int pos) {
+        assert pos < this.length() : "Violates requires pos < |this|";
+
+        // is this spot already true?
         if (!this.report(pos)) {
+
+            // if its not, isolate the byte we need
             byte section = this.arr[(pos / this.BITS)];
             int posProper = (int) pos % this.BITS;
 
+            // and set it to true
             this.arr[(pos / this.BITS)] = (byte) (section
                     + Math.pow(2, posProper));
         }
@@ -147,14 +159,21 @@ public class CoolBool1 extends CoolBoolSecondary {
     /**
      * Sets the position to false.
      *
+     * @requires pos < |this|
      * @param pos
      */
     @Override
     public void setFalse(int pos) {
+
+        // is this spot already false?
+        assert pos < this.length() : "Violates requires pos < |this|";
         if (this.report(pos)) {
+
+            // if its not, isolate the byte we need
             byte section = this.arr[(pos / this.BITS)];
             int posProper = (int) pos % this.BITS;
 
+            // and set it to false
             this.arr[(pos / this.BITS)] = (byte) (section
                     - Math.pow(2, posProper));
         }
@@ -165,19 +184,24 @@ public class CoolBool1 extends CoolBoolSecondary {
      *
      * @param pos
      *
+     * @requires pos < |this|
      * @return reported element
      */
     @Override
     public boolean report(int pos) {
+        assert pos < this.length();
 
         boolean tbd = false;
 
+        // isolate the byte and the bit
         byte section = this.arr[(pos / this.BITS)];
         int posProper = (int) pos % this.BITS;
 
+        // look through the byte until we get to the right bit
         for (byte i = (byte) (this.BITS - 1); i >= posProper; i--) {
             byte thisOne = (byte) Math.pow(2, i);
 
+            // if this is the bit we're checking, set the boolean to true
             if (section / thisOne == 1) {
                 section -= thisOne;
                 if (posProper == i) {
@@ -200,7 +224,7 @@ public class CoolBool1 extends CoolBoolSecondary {
     }
 
     /*
-     * I'll also work on this later! Give me a few hours... or days
+     * Iterator!0
      */
 
     @Override

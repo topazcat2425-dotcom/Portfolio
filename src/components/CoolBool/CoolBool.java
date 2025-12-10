@@ -1,19 +1,11 @@
+package components.CoolBool;
+
 /**
  *
  * @author Trevor Baroni
  *
  */
 public interface CoolBool extends CoolBoolKernel {
-
-    /**
-     * Copies {@code source} to {@code this}.
-     *
-     * @param source
-     *            {@code CoolBool} to copy from
-     * @replaces this
-     * @ensures this = source
-     */
-    void copyFrom(CoolBool source);
 
     /**
      * Returns {@code this} as a string.
