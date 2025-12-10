@@ -3,6 +3,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
+import components.CoolBool.CoolBool;
+import components.CoolBool.CoolBool1;
+import components.CoolBool.CoolBool3;
+
 /**
  * Literally just a catch all for anything that I need.
  *
