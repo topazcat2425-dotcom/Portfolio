@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 /**
  * Put a short phrase describing the program here.
@@ -12,7 +13,6 @@ public final class Test {
      */
     private Test() {
     }
-
 
     /**
      * different boolean array.
@@ -72,7 +72,19 @@ public final class Test {
      */
     public static void main(String[] args) {
 
+        CoolBool c = new CoolBool3(10);
 
+        c.setTrue(0);
+        c.setTrue(3);
+        c.setTrue(7);
+
+        c.setTrue(8);
+
+        System.out.println(Arrays.toString(c.toArray()));
+
+        c.setFalse(0);
+
+        System.out.println(Arrays.toString(c.toArray()));
 
     }
 }
