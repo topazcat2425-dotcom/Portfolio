@@ -1,3 +1,5 @@
+package components.CoolBool;
+
 /**
  *
  * {@code CoolBoolKernel} enhanced with secondary methods.
@@ -6,30 +8,6 @@
  *
  */
 public abstract class CoolBoolSecondary implements CoolBool {
-
-    /**
-     * Copies from the source to this.
-     *
-     * @param source
-     *
-     * @updates this
-     */
-    @Override
-    public void copyFrom(CoolBool source) {
-
-        // clears this to make room to copy
-        this.clear();
-
-        // iterates through the cool bool...ean
-        for (int i = 0; i < source.length(); i++) {
-            // copies everything from source to this
-            if (source.report(i)) {
-                this.setTrue(i);
-            } else {
-                this.setFalse(i);
-            }
-        }
-    }
 
     /**
      * Returns {@code this} as a string.
@@ -115,9 +93,9 @@ public abstract class CoolBoolSecondary implements CoolBool {
         }
 
         if (x instanceof CoolBool) {
-            boolean[] obj = ((CoolBoolSecondary) x).toArray();
-            boolean[] thi = this.toArray();
-            if (thi.equals(obj)) {
+            String obj = ((CoolBoolSecondary) x).toString();
+            String thi = this.toString();
+            if (obj.equals(thi)) {
                 samies = true;
             }
         }

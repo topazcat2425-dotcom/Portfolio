@@ -1,8 +1,8 @@
 # Portfolio Part 6: Finishing Touches
 
-- **Name**: <!-- TODO: fill with first and last name (e.g., Brutus Buckeye) and delete this comment -->
-- **Dot Number**: <!-- TODO: fill with OSU dot number (e.g., buckeye.17) and delete this comment -->
-- **Due Date**: <!-- TODO: fill out with due date and time (e.g., 10/17 @ 3:10 PM EST) and delete this comment -->
+- **Name**: Trevor Baroni
+- **Dot Number**: Baroni.10
+- **Due Date**: 12/10/2025
 
 ## Assignment Overview
 
@@ -307,12 +307,12 @@ Take some time to fill them out honestly.
 > complete the portfolio project, how much better (or worse) do you think you
 > understand software development and why?
 
-<!-- TODO: discuss -->
+I think I understand it so much better because I now know the absolute pain it is to do something at/on the deadline as well as mull over it constantly whether it be in the shower or in the car on how I could solve something. Also it's taught me some things about github I suppose.
 
 > Also, did the portfolio project surface any gaps in your own knowledge of
 > software development. If so, what are those gaps and how did you address them?
 
-<!-- TODO: discuss -->
+YES! I did not address them, but it helped me realize how much I don't understand the user experience like at all, and how  a lot of puzzles I could solve on my end like CopyFrom, but they don't work and I just get lazy and I trust if the user needs it, they can make it themselves.
 
 > Finally, as a part of completing the portfolio project, to what extent has
 > your perspective of software development changed, if at all? In other words,
