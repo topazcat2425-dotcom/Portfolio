@@ -8,6 +8,12 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+## [2025.12.13]
+
+### Updated
+
+- updated README at the root of the folder.
+
 ## [2025.12.09]
 
 ### Added
