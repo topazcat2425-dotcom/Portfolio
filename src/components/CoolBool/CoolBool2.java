@@ -1,3 +1,5 @@
+package components.CoolBool;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -5,26 +7,27 @@ import java.util.NoSuchElementException;
  * It's a better way to store an array of booleans. Implemented with integers.
  *
  * @convention the size is NOT dynamic, don't @ me.
+ * @correspondence this is an array of ints, but it uses 31 of the 32 bits.
  *
  * @author Trevor Baroni
  *
  */
-public class CoolBool3 extends CoolBoolSecondary {
+public class CoolBool2 extends CoolBoolSecondary {
 
-    /*
+    /**
      * the array.
      */
-    private byte[] arr = new byte[0];
+    private int[] arr = new int[0];
 
-    /*
+    /**
      * the length.
      */
     private int length = 0;
 
-    /*
+    /**
      * the amount of bits in the chosen storage container.
      */
-    private final int BITS = 8;
+    private final int BITS = 31;
 
     /**
      * Creator of initial representation.
@@ -40,7 +43,7 @@ public class CoolBool3 extends CoolBoolSecondary {
      * </pre>
      */
     private void createNewRep(int size) {
-        this.arr = new byte[(size / this.BITS) + 1];
+        this.arr = new int[(size / this.BITS) + 1];
         this.length = size;
 
         for (int i = 0; i < this.arr.length; i++) {
@@ -56,7 +59,7 @@ public class CoolBool3 extends CoolBoolSecondary {
      * no args constructor.
      *
      */
-    public CoolBool3() {
+    public CoolBool2() {
         this.createNewRep(0);
     }
 
@@ -66,17 +69,19 @@ public class CoolBool3 extends CoolBoolSecondary {
      * @param size
      *            total size of the array
      */
-    public CoolBool3(int size) {
+    public CoolBool2(int size) {
         this.createNewRep(size);
     }
 
     /**
-     * Constructor from size.
+     * Constructor from size (String).
      *
      * @param size
      *            total size of the array
+     * @requires size is not null
      */
-    public CoolBool3(String size) {
+    public CoolBool2(String size) {
+        assert size != null : "Violates of requires size is not null";
         this.createNewRep(Integer.parseInt(size));
     }
 
@@ -87,10 +92,13 @@ public class CoolBool3 extends CoolBoolSecondary {
     /**
      * @param source
      *
+     * @requires source is not null
      * @update clears source
      */
     @Override
     public void transferFrom(CoolBool source) {
+        assert source != null : "Violation of requires source is not null";
+
         this.createNewRep(source.length());
         int j = 0;
         for (boolean i : source) {
@@ -120,7 +128,7 @@ public class CoolBool3 extends CoolBoolSecondary {
      */
     @Override
     public void clear() {
-        this.arr = new byte[0];
+        this.arr = new int[0];
         this.length = 0;
     }
 
@@ -131,33 +139,23 @@ public class CoolBool3 extends CoolBoolSecondary {
     /**
      * Sets the position to true.
      *
+     * @requires pos < |this|
      * @param pos
      */
     @Override
     public void setTrue(int pos) {
+        assert pos < this.length() : "Violates requires pos < |this|";
+
         // is this spot already true?
         if (!this.report(pos)) {
 
             // if its not, isolate the byte we need
-            byte section = this.arr[(pos / this.BITS)];
+            int section = this.arr[(pos / this.BITS)];
             int posProper = (int) pos % this.BITS;
 
-            // if we're updating the 0th bit, we just make it -1
-            if (posProper == 0) {
-                section *= -1;
-                section--;
-                this.arr[(pos / this.BITS)] = section;
-
-            } else {
-                // otherwise, we add/subtract the power of two that corrosponds
-                // with the bit we're checking
-                byte mult = 1;
-                if (section < 0) {
-                    mult = -1;
-                }
-                this.arr[(pos / this.BITS)] = (byte) (section
-                        + (mult * Math.pow(2, posProper - 1)));
-            }
+            // then adding the current bit from the byte
+            this.arr[(pos / this.BITS)] = (int) (section
+                    + Math.pow(2, posProper));
         }
     }
 
@@ -168,29 +166,17 @@ public class CoolBool3 extends CoolBoolSecondary {
      */
     @Override
     public void setFalse(int pos) {
+
         // is this spot already false?
         if (this.report(pos)) {
 
             // if its not, isolate the byte we need
-            byte section = this.arr[(pos / this.BITS)];
+            int section = this.arr[(pos / this.BITS)];
             int posProper = (int) pos % this.BITS;
 
-            // if we're updating the 0th bit, we just make it the opposite of what it was
-            if (posProper == 0) {
-                section *= -1;
-                section--;
-                this.arr[(pos / this.BITS)] = section;
-
-            } else {
-                // otherwise, we add/subtract the power of two that corrosponds
-                // with the bit we're checking
-                byte mult = 1;
-                if (section < 0) {
-                    mult = -1;
-                }
-                this.arr[(pos / this.BITS)] = (byte) (section
-                        - (mult * Math.pow(2, posProper - 1)));
-            }
+            // then subtract the current bit from the byte
+            this.arr[(pos / this.BITS)] = (int) (section
+                    - Math.pow(2, posProper));
         }
     }
 
@@ -205,41 +191,20 @@ public class CoolBool3 extends CoolBoolSecondary {
     public boolean report(int pos) {
 
         boolean tbd = false;
-        // isolate the byte we'll be checking
-        byte section = this.arr[(pos / this.BITS)];
 
-        // make it positive by removing the negative bit
-        byte mult = 1;
-        if (section < 0) {
-            mult = -1;
-            section++;
-            section *= mult;
-        }
-
-        // get the position relative to the byte
+        // isolate the byte and the bit
+        int section = this.arr[(pos / this.BITS)];
         int posProper = (int) pos % this.BITS;
 
-        // if we're checking the 0th byte, just check if the mult was negative or not
-        if (posProper == 0) {
-            if (mult == -1) {
-                tbd = true;
-            } else {
-                tbd = false;
-            }
-        } else {
-            /*
-             * otherwise, we iterate down the bits in the byte, tearing each bit
-             * off until we reach the position of the byte we needed.
-             */
-            for (int i = (this.BITS - 1); i >= posProper; i--) {
-                byte thisOne = (byte) Math.pow(2, i - 1);
+        // look through the byte until we get to the right bit
+        for (int i = (this.BITS - 1); i >= posProper; i--) {
+            int thisOne = (int) Math.pow(2, i);
 
-                // then we check if that bit was on or not
-                if (section / thisOne == 1) {
-                    section -= thisOne;
-                    if (posProper == i) {
-                        tbd = true;
-                    }
+            // if this is the bit we're checking, set the boolean to true
+            if (section / thisOne == 1) {
+                section -= thisOne;
+                if (posProper == i) {
+                    tbd = true;
                 }
             }
         }
@@ -285,7 +250,7 @@ public class CoolBool3 extends CoolBoolSecondary {
 
         @Override
         public boolean hasNext() {
-            return this.currentPos < CoolBool3.this.length();
+            return this.currentPos < CoolBool2.this.length();
         }
 
         @Override
@@ -299,7 +264,7 @@ public class CoolBool3 extends CoolBoolSecondary {
                  */
                 throw new NoSuchElementException();
             }
-            boolean tbd = CoolBool3.this.report(this.currentPos);
+            boolean tbd = CoolBool2.this.report(this.currentPos);
             this.currentPos++;
 
             return tbd;

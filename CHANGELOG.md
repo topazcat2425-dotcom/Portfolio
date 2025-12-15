@@ -8,6 +8,29 @@ the following form: YYYY.0M.0D.
 
 ## [Unreleased]
 
+## [2025.12.13]
+
+### Updated
+
+- updated README at the root of the folder.
+
+## [2025.12.09]
+
+### Added
+
+- Added tests
+- Added JUnit tests into the library
+
+### Updated
+
+- CoolBool's 1 and 2 got comments
+- Test file that I just renamed to the NonObjectStuff which has use cases and other test functions
+- Rearranged folder composition
+
+### Removed
+
+- CopyFrom secondary method
+
 ## [2025.11.27]
 
 ### Added
